@@ -5,7 +5,7 @@ export const stateContext = createContext()
 
 const ContextProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState("")
-    const [showHistory, setShowHistory] = useState(true)
+    const [showHistory, setShowHistory] = useState(false)
     const [isSmallScreen, setIsSmallScreen] = useState(false)
     const [{loading, data, error, firstSiteHistory, secondSiteHistory}, dispatch] = useReducer(reducer, initialState)
 

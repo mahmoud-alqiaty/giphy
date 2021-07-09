@@ -7,7 +7,7 @@ export const HistoryContainer = styled.div `
     overflow-y: auto;
     position: fixed;
     top: 60px;
-    right: ${({isSmallScreen, showHistory})=> isSmallScreen ? "-100%": "0"} ;
+    right: ${({isSmallScreen, showHistory})=> isSmallScreen ? showHistory? "0" : "-100%": "0"} ;
     background-color: bisque;
     z-index: 10;
 `
