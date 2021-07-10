@@ -20,7 +20,7 @@ This is a solution to the [giphy-app]
 
 Main view should:
 - Show a list of Trending GIFs.
-- Show a Navbar enable to Rout between to sources.
+- Show a Navbar enable to toggle between two sources [giphy](https://giphy.com/) and [reddit](https://www.reddit.com/).
 - Show a search bar so a user can find a GIF.
 - A list of previous search terms should be maintained and should be clickable to re-run that search.
 - Store the previous search history in the localstorage, so that it will be displayed in the history bar.
@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Screenshot
 
-![Desktop view](./ScreenShot/Desktop view.png)
-![mobile view](./ScreenShot/mobile view.png)
+[Desktop view](https://github.com/mahmoud-alqiaty/giphy/blob/main/ScreenShot/Desktop%20view.png)
+[mobile view](https://github.com/mahmoud-alqiaty/giphy/blob/main/ScreenShot/mobile%20view.png)
 
 
 ### Links
