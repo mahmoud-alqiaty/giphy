@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_DATA_ERROR, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_UPDATE_FHISTORY, FETCH_UPDATE_SHISTORY } from '../context/Reducers'
+import { FETCH_DATA_ERROR, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, UPDATE_FHISTORY, UPDATE_SHISTORY } from '../context/Reducers'
 
 
 //Fetching Functions from Giphy
@@ -26,7 +26,7 @@ export const fetchSearchedDatac= (dispatch, searchTerm, location)  => {
     .then(res=> {
         console.log("search:" , res.data.data)
         dispatch({type: FETCH_DATA_SUCCESS, payload: res.data.data})
-        dispatch({type: FETCH_UPDATE_FHISTORY, payload: searchTerm})
+        dispatch({type: UPDATE_FHISTORY, payload: searchTerm})
     })
     .catch(err=> {
         console.log(err.message)
@@ -57,7 +57,7 @@ export const fetchSearchedReddit= (dispatch, searchTerm, location)  => {
     .then(res=> {
         console.log("search:" , res)
         dispatch({type: FETCH_DATA_SUCCESS, payload: res.data.data.children})
-        dispatch({type: FETCH_UPDATE_SHISTORY, payload: searchTerm})
+        dispatch({type: UPDATE_SHISTORY, payload: searchTerm})
 
     })
     .catch(err=> {

@@ -5,18 +5,17 @@ import History from "./components/History/History";
 import Giphy from "./Pages/Giphy/Giphy";
 import ContextProvider, { stateContext } from "./components/context/Context";
 import Reddit from "./Pages/Reddit/Reddit";
+import { LOCALSTORAGE_HISTORY } from "./components/context/Reducers";
 
 
 function App() {
-  const {loading, data, error, dispatch, showHistory, isSmallScreen, setIsSmallScreen} = useContext(stateContext)
+  const {loading, data, error, dispatch, showHistory, isSmallScreen, setIsSmallScreen, firstSiteHistory, secondSiteHistory} = useContext(stateContext)
 
   const handleWidthWithScreen = ()=>{
     if(window.innerWidth > 800){
       setIsSmallScreen(false)
-      console.log(false);
     }else{
       setIsSmallScreen(true)
-      console.log(true);
     }
   }
   
@@ -28,21 +27,19 @@ function App() {
     }
   }, [])
 
-  // const dealWithLocalStorage = ()=>{
-  //   if(localStorage){
-  //     if(localStorage.key)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   dealWithLocalStorage()
-
-  // }, [])
-
+// connect search history with local-storage
+  const dealWithLocalStorage = ()=>{
+    if(localStorage){
+      if(localStorage.getItem('history')){
+        const localstorageHistory = localStorage.getItem('history')
+        dispatch({type: LOCALSTORAGE_HISTORY, payload: JSON.parse(localstorageHistory)})
+      } 
+    }
+  }
   
-
-  //fetch searched data
-
+  useEffect(() => {
+    dealWithLocalStorage()
+  }, [])
 
   return (
       <BrowserRouter>

@@ -21,7 +21,7 @@ const Anmi = keyframes `
 const Icon = styled(AiOutlineLoading3Quarters) `
     font-size: 90px;
     color: #000;
-    animation: ${Anmi} 3s infinite alternate;
+    animation: ${Anmi} 3s infinite forwards;
 `
 const Loading = () => {
     return (

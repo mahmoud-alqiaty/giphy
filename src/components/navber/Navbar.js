@@ -12,7 +12,7 @@ const Navbar = () => {
 
     return (
         <Nav>
-            <Logo to="/">giphy</Logo>
+            <Logo to="/">gifs</Logo>
             <SearchBarComponent width="250px" display={isSmallScreen? "none" : "flex"} />
             <NavList>
                 <NavbarLink to="/" className={location.pathname ==='/' && `active`}>Giphy</NavbarLink>

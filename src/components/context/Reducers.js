@@ -2,8 +2,9 @@
 export const FETCH_DATA_REQUEST = "FETCH_DATA_REQUEST"
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS"
 export const FETCH_DATA_ERROR = "FETCH_DATA_ERROR"
-export const FETCH_UPDATE_FHISTORY = "FETCH_UPDATE_FHISTORY"
-export const FETCH_UPDATE_SHISTORY = "FETCH_UPDATE_SHISTORY"
+export const LOCALSTORAGE_HISTORY = "LOCALSTORAGE_HISTORY"
+export const UPDATE_FHISTORY = "UPDATE_FHISTORY"
+export const UPDATE_SHISTORY = "UPDATE_SHISTORY"
 export const CLEAR_FHISTORY = "CLEAR_FHISTORY"
 export const CLEAR_SHISTORY = "CLEAR_SHISTORY"
 
@@ -43,26 +44,36 @@ export const reducer = (state, {type, payload})=>{
                 error: payload
             }
                 
-        case FETCH_UPDATE_FHISTORY:
+        case UPDATE_FHISTORY:
         {
             const isExistCategory = 
             state.firstSiteHistory.findIndex(item=> item === payload) >= 0
+            const updatedFHistory = isExistCategory?  
+                [...state.firstSiteHistory] : 
+                [...state.firstSiteHistory, payload]
+
+            if(localStorage){
+                localStorage.setItem('history', JSON.stringify({fHistory: updatedFHistory , sHistory: state.secondSiteHistory}))
+            }
             return{
                 ...state,
-                firstSiteHistory:  isExistCategory?  
-                [...state.firstSiteHistory] : 
-                [...state.firstSiteHistory, payload],
+                firstSiteHistory:  [...updatedFHistory],
             }
         }
                 
-        case FETCH_UPDATE_SHISTORY:
+        case UPDATE_SHISTORY:
         {   const isExistCategory = 
             state.secondSiteHistory.findIndex(item=> item === payload) >= 0
+            const updatedSHistory = isExistCategory?  
+                [...state.secondSiteHistory] : 
+                [...state.secondSiteHistory, payload]
+
+            if(localStorage){
+                localStorage.setItem('history', JSON.stringify({fHistory: state.firstSiteHistory, sHistory: updatedSHistory}))
+            }
             return{
                 ...state,
-                secondSiteHistory:  isExistCategory?  
-                [...state.secondSiteHistory] : 
-                [...state.secondSiteHistory, payload],
+                secondSiteHistory:  [...updatedSHistory],
             }
         }
 
@@ -79,6 +90,15 @@ export const reducer = (state, {type, payload})=>{
             return{
                 ...state,
                 secondSiteHistory: []
+            }
+        }
+                
+        case LOCALSTORAGE_HISTORY:
+        {   
+            return{
+                ...state,
+                firstSiteHistory: payload.fHistory? payload.fHistory : [],
+                secondSiteHistory: payload.sHistory? payload.sHistory : []
             }
         }
                 

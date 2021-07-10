@@ -9,7 +9,7 @@ import { DeleteIcon, HistoryContainer, HistoryHeader, HistoryList } from './Hist
 const History = () => {
     const {dispatch, firstSiteHistory, secondSiteHistory, showHistory, setShowHistory, searchTerm, isSmallScreen, setIsSmallScreen} = useContext(stateContext)
     const location = useLocation()
-
+    console.log(firstSiteHistory);
 
     const clearHistory = ()=>{
         if(location.pathname="/"){
